@@ -28,9 +28,10 @@ class Graph:
         self.add_edge(node2, node1)
 
     def remove_node(self, node):
-        for neighbor in self.adj_list[node]:
-            self.adj_list[neighbor].remove(node)
-            self.edge_count -= 1
+        for node2 in self.adj_list:
+            if node in self.adj_list[node2]:
+                self.adj_list[node2].remove(node)
+                self.edge_count -= 1
         self.adj_list.pop(node)
         self.node_count -= 1
 

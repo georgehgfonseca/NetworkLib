@@ -11,5 +11,5 @@ g.add_edge("Caio", "Alex")
 g.add_edge("Liz", "Caio")
 g.add_edge("Alex", "Liz")
 
-g.remove_edge("Bia", "Caio")
+g.remove_node("Liz")
 print(g)
