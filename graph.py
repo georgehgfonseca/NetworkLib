@@ -32,17 +32,50 @@ class Graph:
             if node in self.adj_list[node2]:
                 self.adj_list[node2].remove(node)
                 self.edge_count -= 1
-        self.adj_list.pop(node)
+        self.edge_count -= len(self.adj_list[node])
         self.node_count -= 1
+        self.adj_list.pop(node)
 
     def remove_edge(self, node1, node2):
         try:
           self.adj_list[node1].remove(node2)
           self.edge_count -= 1
         except KeyError as e:
-            print(f"Node {e} does not exist")
+            print(f"WARN: Node {e} does not exist")
         except ValueError as e:
             print(f"WARN: Edge {node1} -> {node2} does not exist")
+
+    def degree_out(self, node):
+        return len(self.adj_list[node])
+    
+    def degree_in(self, node):
+        count = 0
+        for node2 in self.adj_list:
+            if node in self.adj_list[node2]:
+                count += 1
+        return count
+    
+    def highest_degree_out(self):
+        highest = float("-inf")
+        for node in self.adj_list:
+            if self.degree_out(node) > highest:
+                highest = self.degree_out(node)
+        return highest
+
+    def highest_degree_in(self):
+        highest = float("-inf")
+        for node in self.adj_list:
+            if self.degree_in(node) > highest:
+                highest = self.degree_in(node)
+        return highest
+
+    def density(self):
+        return self.edge_count / (self.node_count * (self.node_count - 1))
+
+    def is_complete(self):
+        return self.density() == 1
+
+
 
     def __str__(self) -> str:
         output = "Nodes: " + str(self.node_count) + "\n"
