@@ -36,6 +36,25 @@ g2.add_two_way_edge("Alex", "Bia")
 print("Is subgraph of g2:", g.is_subgraph_of(g2))
 
 # Lesson 5 - Graph walks 
+g3 = Graph()
+g3.add_nodes([0, 1, 2, 3, 4, 5, 6])
+g3.add_two_way_edge(0, 1)
+g3.add_two_way_edge(0, 3)
+g3.add_two_way_edge(0, 5)
+g3.add_two_way_edge(1, 2)
+g3.add_two_way_edge(1, 3)
+g3.add_two_way_edge(2, 3)
+g3.add_two_way_edge(2, 6)
+g3.add_two_way_edge(3, 4)
+g3.add_two_way_edge(3, 5)
+g3.add_two_way_edge(3, 6)
+g3.add_two_way_edge(4, 5)
+g3.add_two_way_edge(4, 6)
+
+print("Walk 0 -> 3 -> 2 is valid?", g3.is_valid_walk([0, 3, 2]))
+print("Walk 0 -> 6 -> 2 is valid?", g3.is_valid_walk([0, 6, 2]))
+print("Path 0 -> 3 -> 2 is valid?", g3.is_valid_path([0, 3, 2]))
+print("Path 0 -> 3 -> 0 -> 1 is valid?", g3.is_valid_path([0, 3, 0, 1]))
 
 # Lesson 6 - Graph search
 

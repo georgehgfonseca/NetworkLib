@@ -111,10 +111,50 @@ class Graph:
             for node2 in self.adj_list:
                 if node2 not in g2.adj_list[node]:
                     return False
-        return True        
+        return True
     
-    def is_connected(self):
-        pass
+    def is_valid_walk(self, walk):
+        for i in range(len(walk) - 1):
+            if not self.there_is_edge(walk[i], walk[i + 1]):
+                return False
+        return True
+    
+    def is_valid_trail(self, trail):
+        # can be faster using dictionary
+        used_edges = []
+        for i in range(len(trail) - 1):
+            if not self.there_is_edge(trail[i], trail[i + 1]):
+                return False
+            edge = (trail[i], trail[i + 1])
+            if edge in used_edges:
+                return False
+            used_edges.append(edge)
+        return True
+
+    def is_valid_circuit(self, circuit):
+        if self.is_valid_trail(circuit):
+            return circuit[0] == circuit[-1]
+
+    def is_valid_path(self, path):
+        # can be faster using dictionary
+        used_nodes = []
+        used_edges = []
+        for i in range(len(path) - 1):
+            if not self.there_is_edge(path[i], path[i + 1]):
+                return False
+            edge = (path[i], path[i + 1])
+            if edge in used_edges:
+                return False
+            used_edges.append(edge)
+            node = path[i]
+            if node in used_nodes:
+                return False
+            used_nodes.append(node)
+        return True
+
+    def is_valid_cycle(self, cycle):
+        if self.is_valid_path(cycle):
+            return cycle[0] == cycle[-1]
 
     def __str__(self) -> str:
         output = "Nodes: " + str(self.node_count) + "\n"
