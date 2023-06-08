@@ -172,20 +172,41 @@ class Graph:
                     R.append(v)
         return R
     
-    def dfs_visit(self, u, desc, R):
+    def dfs_rec_visit(self, u, desc, R):
         desc[u] = 1
         R.append(u)
         for v in self.adj_list[u]:
             if desc[v] == 0:
-                self.dfs_visit(v, desc, R)
+                self.dfs_rec_visit(v, desc, R)
 
-    def dfs(self, s):
+    def dfs_rec(self, s):
         desc = {}
         for node in self.adj_list:
             desc[node] = 0
         R = []
-        self.dfs_visit(s, desc, R)
+        self.dfs_rec_visit(s, desc, R)
         return R # remove statement for debugging example
+    
+    def dfs(self, s):
+        desc = {}
+        for node in self.adj_list:
+            desc[node] = 0
+        S = [s]
+        R = [s]
+        desc[s] = 1
+        while len(S) > 0:
+            u = S[-1]
+            unstack = True
+            for v in self.adj_list[u]:
+                if desc[v] == 0:
+                    desc[v] = 1
+                    S.append(v)
+                    R.append(v)
+                    unstack = False
+                    break
+            if unstack:
+                S.pop()
+        return R
     
     def is_connected(self):
         return len(self.dfs(list(self.adj_list)[0])) == self.node_count

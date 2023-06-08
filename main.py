@@ -65,6 +65,7 @@ g4.add_two_way_edge(2, 4)
 g4.add_two_way_edge(4, 3)
 g4.add_two_way_edge(4, 5)
 print("BFS from 0:", g4.bfs(0))
+print("DFS (recursive) from 0:", g4.dfs_rec(0))
 print("DFS from 0:", g4.dfs(0))
 print("g4 is connected?", g4.is_connected())
 
