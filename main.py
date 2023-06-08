@@ -57,5 +57,21 @@ print("Path 0 -> 3 -> 2 is valid?", g3.is_valid_path([0, 3, 2]))
 print("Path 0 -> 3 -> 0 -> 1 is valid?", g3.is_valid_path([0, 3, 0, 1]))
 
 # Lesson 6 - Graph search
+g4 = Graph()
+g4.add_nodes([0, 1, 2, 3, 4, 5])
+g4.add_two_way_edge(0, 2)
+g4.add_two_way_edge(0, 5)
+g4.add_two_way_edge(2, 4)
+g4.add_two_way_edge(4, 3)
+g4.add_two_way_edge(4, 5)
+print("BFS from 0:", g4.bfs(0))
+print("DFS from 0:", g4.dfs(0))
+print("g4 is connected?", g4.is_connected())
 
 # Lesson 7 - Shortest-path algorithms
+
+# Lesson 8 - Minimum spanning tree algorithms
+
+# Lesson 9 - Eulerian and Hamiltonian graphs
+
+# Lesson 10 - Network flow algorithms

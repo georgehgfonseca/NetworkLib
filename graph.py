@@ -155,6 +155,40 @@ class Graph:
     def is_valid_cycle(self, cycle):
         if self.is_valid_path(cycle):
             return cycle[0] == cycle[-1]
+        
+    def bfs(self, s):
+        desc = {}
+        for node in self.adj_list:
+            desc[node] = 0
+        Q = [s]
+        R = [s]
+        desc[s] = 1 # node for debugging example
+        while len(Q) > 0:
+            u = Q.pop(0)
+            for v in self.adj_list[u]:
+                if desc[v] == 0:
+                    desc[v] = 1
+                    Q.append(v)
+                    R.append(v)
+        return R
+    
+    def dfs_visit(self, u, desc, R):
+        desc[u] = 1
+        R.append(u)
+        for v in self.adj_list[u]:
+            if desc[v] == 0:
+                self.dfs_visit(v, desc, R)
+
+    def dfs(self, s):
+        desc = {}
+        for node in self.adj_list:
+            desc[node] = 0
+        R = []
+        self.dfs_visit(s, desc, R)
+        return R # remove statement for debugging example
+    
+    def is_connected(self):
+        return len(self.dfs(list(self.adj_list)[0])) == self.node_count
 
     def __str__(self) -> str:
         output = "Nodes: " + str(self.node_count) + "\n"
