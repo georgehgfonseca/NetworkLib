@@ -1,16 +1,20 @@
 from graph import Graph
 from grafoPonderado import GrafoPonderado
 
-# Aula 8 - Grafos ponderados
+# Aula 9 - Leitura de arquivo
 g = GrafoPonderado()
-g.adicionar_no(0)
-g.adicionar_no(1)
-g.adicionar_no(2)
-g.adicionar_aresta(0, 2, 20)
-g.adicionar_aresta(1, 0, 12)
-g.adicionar_aresta(1, 2, 18)
-g.remove_aresta(0, 1)
-print(g.lista_adj)
+g.ler_arquivo("grafo2.txt")
+print(g)
+
+# Aula 8 - Grafos ponderados
+# g = GrafoPonderado()
+# g.adicionar_no(0)
+# g.adicionar_no(1)
+# g.adicionar_no(2)
+# g.adicionar_aresta(0, 2, 20)
+# g.adicionar_aresta(1, 0, 12)
+# g.adicionar_aresta(1, 2, 18)
+
 # # Lesson 1 - Graph creation 
 # g = Graph()
 # g.add_node("Bia")
