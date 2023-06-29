@@ -1,10 +1,15 @@
 from graph import Graph
 from grafoPonderado import GrafoPonderado
 
-# Aula 9 - Leitura de arquivo
+# Aula 10 - Algoritmos de Caminho Minimo
 g = GrafoPonderado()
-g.ler_arquivo("grafo2.txt")
-print(g)
+g.ler_arquivo("USA-road-dt.DC.txt")
+print(g.bellman_ford_melhorado("0"))
+
+# Aula 9 - Leitura de arquivo
+# g = GrafoPonderado()
+# g.ler_arquivo("grafo1.txt")
+# print(g)
 
 # Aula 8 - Grafos ponderados
 # g = GrafoPonderado()

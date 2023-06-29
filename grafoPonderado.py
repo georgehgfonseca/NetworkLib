@@ -64,4 +64,40 @@ class GrafoPonderado:
         self.num_nos -= 1
         self.lista_adj.pop(no)
 
+    def bellman_ford(self, s):
+        dist = {}
+        pred = {}
+        for no in self.lista_adj:
+            dist[no] = float('inf')
+            pred[no] = None
+        dist[s] = 0
+        for i in range(self.num_nos - 1):
+            for u in self.lista_adj:
+                for v in self.lista_adj[u]:
+                    w = self.lista_adj[u][v]
+                    if dist[v] > dist[u] + w:
+                        dist[v] = dist[u] + w
+                        pred[v] = u
+        return (dist, pred)
+
+    def bellman_ford_melhorado(self, s):
+        dist = {}
+        pred = {}
+        for no in self.lista_adj:
+            dist[no] = float('inf')
+            pred[no] = None
+        dist[s] = 0
+        for i in range(self.num_nos - 1):
+            trocou = False
+            for u in self.lista_adj:
+                for v in self.lista_adj[u]:
+                    w = self.lista_adj[u][v]
+                    if dist[v] > dist[u] + w:
+                        dist[v] = dist[u] + w
+                        pred[v] = u
+                        trocou = True
+            if not trocou:
+                break
+        return (dist, pred)
+
 
