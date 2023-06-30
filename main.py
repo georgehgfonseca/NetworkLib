@@ -1,24 +1,32 @@
 from graph import Graph
-from grafoPonderado import GrafoPonderado
+from weightedGraph import WeightedGraph
 
-# Aula 10 - Algoritmos de Caminho Minimo
-g = GrafoPonderado()
-g.ler_arquivo("USA-road-dt.DC.txt")
-print(g.bellman_ford_melhorado("0"))
+#===============================================================================#
+# WEIGHTED GRAPHS                                                             #
+#===============================================================================#
 
-# Aula 9 - Leitura de arquivo
-# g = GrafoPonderado()
-# g.ler_arquivo("grafo1.txt")
+# Aula 10 - Shortest path algorithms
+g = WeightedGraph()
+g.read_file("USA-road-dt.DC.txt")
+print(g.bellman_ford_improved("0"))
+
+# # Lesson 9 - Graph file reading
+# g = WeightedGraph()
+# g.read_file("graph1.txt")
 # print(g)
 
-# Aula 8 - Grafos ponderados
-# g = GrafoPonderado()
-# g.adicionar_no(0)
-# g.adicionar_no(1)
-# g.adicionar_no(2)
-# g.adicionar_aresta(0, 2, 20)
-# g.adicionar_aresta(1, 0, 12)
-# g.adicionar_aresta(1, 2, 18)
+# # Lesson 8 - Weighted graph creation
+# g = WeightedGraph()
+# g.add_node(0)
+# g.add_node(1)
+# g.add_node(2)
+# g.add_edge(0, 2, 20)
+# g.add_edge(1, 0, 12)
+# g.add_edge(1, 2, 18)
+
+#===============================================================================#
+# UNWEIGHTED GRAPHS                                                             #
+#===============================================================================#
 
 # # Lesson 1 - Graph creation 
 # g = Graph()
