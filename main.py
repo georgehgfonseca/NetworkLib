@@ -1,14 +1,25 @@
 from graph import Graph
 from weightedGraph import WeightedGraph
+import time
 
 #===============================================================================#
 # WEIGHTED GRAPHS                                                             #
 #===============================================================================#
-
-# Aula 10 - Shortest path algorithms
+# Lesson 11 - 
 g = WeightedGraph()
 g.read_file("USA-road-dt.DC.txt")
-print(g.bellman_ford_improved("0"))
+start_time = time.time()
+g.disjkstra("0")
+end_time = time.time()
+print("Time elapsed (Dijkstra):", end_time - start_time)
+
+# Lesson 10 - Shortest path algorithms
+# g = WeightedGraph()
+# g.read_file("USA-road-dt.DC.txt")
+# start_time = time.time()
+# g.bellman_ford("0")
+# end_time = time.time()
+# print("Time elapsed (BF Improved):", end_time - start_time)
 
 # # Lesson 9 - Graph file reading
 # g = WeightedGraph()

@@ -64,6 +64,36 @@ class WeightedGraph:
         self.node_count -= 1
         self.adj_list.pop(node)
 
+    def extract_min(self, Q, dist):
+        min_dist = float("inf")
+        min_node = None
+        for node in Q:
+            if dist[node] < min_dist:
+                min_dist = dist[node]
+                min_node = node
+        return min_node
+
+    def disjkstra(self, s):
+        dist = {}
+        pred = {}
+        Q = []
+        for node in self.adj_list:
+            dist[node] = float('inf')
+            pred[node] = None
+            Q.append(node)
+        dist[s] = 0
+        while len(Q) > 0:
+            # u = min(Q, key=lambda x: dist[x])
+            u = self.extract_min(Q, dist)
+            Q.remove(u)
+            for v in self.adj_list[u]:
+                w = self.adj_list[u][v]
+                if dist[v] > dist[u] + w:
+                    dist[v] = dist[u] + w
+                    pred[v] = u
+        return (dist, pred)
+
+
     def bellman_ford(self, s):
         dist = {}
         pred = {}
@@ -78,6 +108,13 @@ class WeightedGraph:
                     if dist[v] > dist[u] + w:
                         dist[v] = dist[u] + w
                         pred[v] = u
+        for u in self.adj_list:
+            for v in self.adj_list[u]:
+                w = self.adj_list[u][v]
+                if dist[v] > dist[u] + w:
+                    # Negative cycle detected
+                    print("WARN: Negative cycle detected")
+                    return (None, None)
         return (dist, pred)
 
     def bellman_ford_improved(self, s):
