@@ -1,3 +1,5 @@
+import heapq
+
 class WeightedGraph:
     
     def __init__(self) -> None:
@@ -73,7 +75,7 @@ class WeightedGraph:
                 min_node = node
         return min_node
 
-    def disjkstra(self, s):
+    def dijkstra(self, s):
         dist = {}
         pred = {}
         Q = []
@@ -94,6 +96,24 @@ class WeightedGraph:
         return (dist, pred)
 
 
+    def dijkstra_pq(self, s):
+        dist = {}
+        pred = {}
+        for node in self.adj_list:
+            dist[node] = float('inf')
+            pred[node] = None
+        pq = [(0, s)]
+        dist[s] = 0
+        while pq:
+            u_dist, u = heapq.heappop(pq)
+            for v in self.adj_list[u]:
+                w = self.adj_list[u][v]
+                if dist[v] > dist[u] + w:
+                    dist[v] = dist[u] + w
+                    pred[v] = u
+                    heapq.heappush(pq, (dist[v], v))
+        return (dist, pred)
+    
     def bellman_ford(self, s):
         dist = {}
         pred = {}
@@ -136,5 +156,39 @@ class WeightedGraph:
             if not swapped:
                 break
         return (dist, pred)
+
+    def floyd_warshall(self):
+        dist = {}
+        pred = {}
+        for i in self.adj_list:
+            dist[i] = {}
+            pred[i] = {}
+            for j in self.adj_list:
+                if i == j:
+                    dist[i][j] = 0
+                    pred[i][j] = None
+                elif j in self.adj_list[i]:
+                    dist[i][j] = self.adj_list[i][j]
+                    pred[i][j] = i
+                else:
+                    dist[i][j] = float('inf')
+                    pred[i][j] = None
+        for k in self.adj_list:
+            for i in self.adj_list:
+                for j in self.adj_list:
+                    if dist[i][j] > dist[i][k] + dist[k][j]:
+                        dist[i][j] = dist[i][k] + dist[k][j]
+                        pred[i][j] = pred[k][j]
+        return dist, pred
+
+
+
+
+
+
+
+
+
+
 
 

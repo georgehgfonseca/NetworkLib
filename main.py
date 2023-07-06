@@ -5,13 +5,31 @@ import time
 #===============================================================================#
 # WEIGHTED GRAPHS                                                             #
 #===============================================================================#
-# Lesson 11 - 
+# Lesson 12 - Floyd-Warshall algorithm 
 g = WeightedGraph()
-g.read_file("USA-road-dt.DC.txt")
-start_time = time.time()
-g.disjkstra("0")
-end_time = time.time()
-print("Time elapsed (Dijkstra):", end_time - start_time)
+g.read_file("datasets/floyd-warshall-test.txt")
+print(g.floyd_warshall())
+
+
+# Lesson 11 - Shortest path algorithms performance comparison
+# g = WeightedGraph()
+# g.read_file("datasets/USA-road-dt.DC.txt")
+
+# start_time = time.time()
+# g.bellman_ford("0")
+# print(f"{'Time elapsed (Bellman-Ford):':35} {time.time() - start_time:.3f}")
+
+# start_time = time.time()
+# g.bellman_ford_improved("0")
+# print(f"{'Time elapsed (Bellman-Ford impr.):':35} {time.time() - start_time:.3f}")
+
+# start_time = time.time()
+# g.dijkstra("0")
+# print(f"{'Time elapsed (Dijsktra):':35} {time.time() - start_time:.3f}")
+
+# start_time = time.time()
+# g.dijkstra_pq("0")
+# print(f"{'Time elapsed (Dijsktra PQ):':35} {time.time() - start_time:.3f}")
 
 # Lesson 10 - Shortest path algorithms
 # g = WeightedGraph()
@@ -107,11 +125,3 @@ print("Time elapsed (Dijkstra):", end_time - start_time)
 # print("DFS (recursive) from 0:", g4.dfs_rec(0))
 # print("DFS from 0:", g4.dfs(0))
 # print("g4 is connected?", g4.is_connected())
-
-# Lesson 7 - Shortest-path algorithms
-
-# Lesson 8 - Minimum spanning tree algorithms
-
-# Lesson 9 - Eulerian and Hamiltonian graphs
-
-# Lesson 10 - Network flow algorithms
